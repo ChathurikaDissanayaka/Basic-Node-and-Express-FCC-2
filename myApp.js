@@ -6,6 +6,11 @@ var app = express();
 //   res.send("Hello Express");
 // });
 
+app.use(function(req, res, next) {
+  console.log(req.method+" "+req.path+" - "+req.ip);
+  next();
+});
+
 absolutePath = __dirname + "/views/index.html"
 
 app.get("/", function(req, res) {
@@ -20,6 +25,8 @@ app.get("/json", function(req, res) {
   }
   res.json({"message": "Hello json"});
 });
+
+
 
 
 
