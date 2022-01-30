@@ -1,4 +1,4 @@
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser') //$ npm install body-parser
 var express = require('express');
 var app = express();
 // console.log("Hello World");
