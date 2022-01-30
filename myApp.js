@@ -1,3 +1,4 @@
+var bodyParser = require('body-parser')
 var express = require('express');
 var app = express();
 // console.log("Hello World");
@@ -33,17 +34,37 @@ app.get("/json", function(req, res) {
 //   res.send({time: req.time});
 // });
 
-app.get("/:word/echo", function(req, res, next) {
-  word = req.params.word;
-  next();
-}, function(req, res) {
-  res.send({echo: word});
+// app.get("/:word/echo", function(req, res, next) {
+//   word = req.params.word;
+//   next();
+// }, function(req, res) {
+//   res.send({echo: word});
+// });
+
+app.get("/name", function(req, res) {
+  var fName = req.query.first
+  var lName = req.query.last
+
+  var { first: firstName, last: lastName } = req.query;
+
+  res.json({
+    name: `${firstName} ${lastName}`
+  });
 });
 
+app.use(bodyParser.urlencoded({extended: false})) 
+app.use(bodyParser.json());
 
+app.post("/name", function(req, res) {
+  var fName = req.body.first
+  var lName = req.body.last
 
+  var { first: firstName, last: lastName } = req.body;
 
-
+  res.json({
+    name: `${firstName} ${lastName}`
+  });
+});
 
 
 
